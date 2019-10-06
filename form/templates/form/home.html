@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Выпускники НГТУ</h1>
+	<form action="/external/" method="post">
+		{% csrf_token %}
+		Введите профессию:
+		<input type="text" name="param" required="" enctype="unicode">
+		<br>
+		<br>
+		<input type="submit" value="Поиск">
+		<br><br>
+		Профессия: {{Occ}}
+		<br>
+		Всего резюме: {{Amount}}
+		<br>
+		Средняя зарплата: {{AvgSal}} рублей
+		<br>
+		Самая высокая зарплата: {{HighestSal}} рублей
+		<br>
+		Самая низкая зарплата: {{LowestSal}} рублей
+		<br>
+		Средний возраст: {{AvgAge}}
+		<br>
+		Самый старый: {{OldAge}}
+		<br>
+		Самый молодой: {{YoungAge}}
+		<br>
+		Среднй опыт работы: {{AvgExp}}
+		<br>
+		Самые частые места работы: {{lastJobs}}
+	</form>
+</body>
+</html>
