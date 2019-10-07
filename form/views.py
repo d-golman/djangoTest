@@ -20,11 +20,9 @@ def external(request):
 		if form.is_valid():
 			inp  = form.cleaned_data['Search']
 	
-	Occ = run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'occupation'],shell=False,stdout=PIPE)
-	print(inp)
-	print(inp.encode("UTF-8"))
-	Amount = run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'resumes amount'],shell=False,stdout=PIPE)
-	AvgSal = run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'avg salary'],shell=False,stdout=PIPE)
+	Occ = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'occupation'],shell=False,stdout=PIPE)
+	Amount = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'resumes amount'],shell=False,stdout=PIPE)
+	AvgSal = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'avg salary'],shell=False,stdout=PIPE)
 	HighestSal= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'high salary'],shell=False,stdout=PIPE)
 	LowestSal= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'low salary'],shell=False,stdout=PIPE)
 	AvgAge= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'avg age'],shell=False,stdout=PIPE)
