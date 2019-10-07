@@ -78,6 +78,7 @@ def lastJobs(resumes):
 
 def Output(occupation, index):
     resumes = FindResumes(occupation)
+    print
     result = []
     result.append({
         'occupation':occupation,
@@ -94,6 +95,7 @@ def Output(occupation, index):
     return result[0][index]
 
 out = Output(sys.argv[1],sys.argv[2])
-print(sys.argv[1])
+
+print(sys.argv[1].decode("cp1251"))
 print(sys.argv[2])
 print(out)
