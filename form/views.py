@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# vim:fileencoding=utf-8
 from __future__ import unicode_literals
 from django.shortcuts import render
 import requests
@@ -18,7 +20,7 @@ def external(request):
 	if request.method == 'POST':
 		form = SearchForm(request.POST)
 		if form.is_valid():
-			inp  = form.cleaned_data['Search'].encode("cp1251")
+			inp  = form.cleaned_data['Search']
 	
 	Occ = run([sys.executable,'form/mongo.py',inp,'occupation'],shell=False,stdout=PIPE)
 	Amount = run([sys.executable,'form/mongo.py',inp,'resumes amount'],shell=False,stdout=PIPE)

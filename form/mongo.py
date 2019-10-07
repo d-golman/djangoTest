@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# vim:fileencoding=utf-8
 import pymongo
 import collections
 import sys
@@ -92,7 +94,6 @@ def Output(occupation, index):
         'avg exp':AvgExp(resumes),
         'last jobs':lastJobs(resumes)
     })
-    print(result)
     return result[0][index]
 
 out = Output(sys.argv[1],sys.argv[2])
