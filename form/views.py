@@ -20,7 +20,7 @@ def external(request):
 		if form.is_valid():
 			inp  = form.cleaned_data['Search']
 	
-	Occ = run([sys.executable,'form/mongo.py',inp,'occupation'],shell=False,stdout=PIPE)
+	Occ = run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'occupation'],shell=False,stdout=PIPE)
 	Amount = run([sys.executable,'form/mongo.py',inp,'resumes amount'],shell=False,stdout=PIPE)
 	AvgSal = run([sys.executable,'form/mongo.py',inp,'avg salary'],shell=False,stdout=PIPE)
 	HighestSal= run([sys.executable,'form/mongo.py',inp,'high salary'],shell=False,stdout=PIPE)
