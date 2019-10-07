@@ -32,7 +32,7 @@ def external(request):
 	lastJobs= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'last jobs'],shell=False,stdout=PIPE)
 
 	return render(request,'form/home.html',{
-		'Occ':Occ.stdout.decode('cp1251'),
+		'Occ':inp,
 		'Amount':Amount.stdout.decode('cp1251'),
 		'AvgSal':AvgSal.stdout.decode('cp1251'),
 		'HighestSal':HighestSal.stdout.decode('cp1251'),
