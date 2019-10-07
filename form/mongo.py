@@ -92,10 +92,6 @@ def Output(occupation, index):
         'avg exp':AvgExp(resumes),
         'last jobs':lastJobs(resumes)
     })
-    return result[0][index]
+    print(result[0][index])
 
-out = Output(sys.argv[1],sys.argv[2])
-
-print(sys.argv[1].decode("cp1251"))
-print(sys.argv[2])
-print(out)
+Output(sys.argv[1],sys.argv[2])
