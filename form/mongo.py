@@ -16,7 +16,6 @@ def FindResumes(occupation):
     collection = MongoConnect()
     resumes = []
     for resume in collection.find({"occupation" : occupation}):
-        print(resume)
         resumes.append(resume)
     return resumes
 
