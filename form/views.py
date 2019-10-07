@@ -24,7 +24,7 @@ def external(request):
 	Amount = run([sys.executable,'form/mongo.py',inp,'resumes amount'],shell=False,stdout=PIPE)
 	AvgSal = run([sys.executable,'form/mongo.py',inp,'avg salary'],shell=False,stdout=PIPE)
 	HighestSal= run([sys.executable,'form/mongo.py','high salary'],shell=False,stdout=PIPE)
-	LowestSal= run([sys.executable,'form/mongo.py',shell=False,stdout=PIPE)
+	LowestSal= run([sys.executable,'form/mongo.py','low salary'],shell=False,stdout=PIPE)
 	AvgAge= run([sys.executable,'form/mongo.py','avg age'],shell=False,stdout=PIPE)
 	OldAge= run([sys.executable,'form/mongo.py','old age'],shell=False,stdout=PIPE)
 	YoungAge= run([sys.executable,'form/mongo.py','young age'],shell=False,stdout=PIPE)
