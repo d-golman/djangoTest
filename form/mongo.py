@@ -77,8 +77,8 @@ def lastJobs(resumes):
     return mostPop
 
 def Output(occupation, index):
-    resumes = FindResumes(occupation)
     print(occupation)
+    resumes = FindResumes(occupation.decode('cp1251'))
     result = []
     result.append({
         'occupation':occupation,
@@ -92,6 +92,7 @@ def Output(occupation, index):
         'avg exp':AvgExp(resumes),
         'last jobs':lastJobs(resumes)
     })
-    print(result[0][index])
+    return result[0][index]
 
-Output(sys.argv[1],sys.argv[2])
+out = Output(sys.argv[1],sys.argv[2])
+print(out)
