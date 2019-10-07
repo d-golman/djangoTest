@@ -23,13 +23,13 @@ def external(request):
 	Occ = run([sys.executable,'form/mongo.py',inp,'occupation'],shell=False,stdout=PIPE)
 	Amount = run([sys.executable,'form/mongo.py',inp,'resumes amount'],shell=False,stdout=PIPE)
 	AvgSal = run([sys.executable,'form/mongo.py',inp,'avg salary'],shell=False,stdout=PIPE)
-	HighestSal= run([sys.executable,'form/mongo.py','high salary'],shell=False,stdout=PIPE)
-	LowestSal= run([sys.executable,'form/mongo.py','low salary'],shell=False,stdout=PIPE)
-	AvgAge= run([sys.executable,'form/mongo.py','avg age'],shell=False,stdout=PIPE)
-	OldAge= run([sys.executable,'form/mongo.py','old age'],shell=False,stdout=PIPE)
-	YoungAge= run([sys.executable,'form/mongo.py','young age'],shell=False,stdout=PIPE)
-	AvgExp= run([sys.executable,'form/mongo.py','avg exp'],shell=False,stdout=PIPE)
-	lastJobs= run([sys.executable,'form/mongo.py','last jobs'],shell=False,stdout=PIPE)
+	HighestSal= run([sys.executable,'form/mongo.py',inp,'high salary'],shell=False,stdout=PIPE)
+	LowestSal= run([sys.executable,'form/mongo.py',inp,'low salary'],shell=False,stdout=PIPE)
+	AvgAge= run([sys.executable,'form/mongo.py',inp,'avg age'],shell=False,stdout=PIPE)
+	OldAge= run([sys.executable,'form/mongo.py',inp,'old age'],shell=False,stdout=PIPE)
+	YoungAge= run([sys.executable,'form/mongo.py',inp,'young age'],shell=False,stdout=PIPE)
+	AvgExp= run([sys.executable,'form/mongo.py',inp,'avg exp'],shell=False,stdout=PIPE)
+	lastJobs= run([sys.executable,'form/mongo.py',inp,'last jobs'],shell=False,stdout=PIPE)
 
 	return render(request,'form/home.html',{
 		'Occ':Occ.stdout.decode('cp1251'),
