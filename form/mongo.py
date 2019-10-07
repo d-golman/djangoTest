@@ -94,4 +94,4 @@ def Output(occupation, index):
     return result[0][index]
 
 out = Output(sys.argv[1],sys.argv[2])
-print(out)
+print(out.decode('cp1251'))
