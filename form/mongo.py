@@ -96,5 +96,5 @@ def Output(occupation, index):
     print(result)
     return result[0][index]
 
-out = Output(sys.argv[1],sys.argv[2])
+out = Output(sys.argv[1].encode('utf-16','surrogatepass').decode('utf-16'),sys.argv[2])
 print(out)
