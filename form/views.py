@@ -31,7 +31,7 @@ def external(request):
 	AvgExp= run([sys.executable,'form/mongo.py',inp,'avg exp'],shell=False,stdout=PIPE)
 	lastJobs= run([sys.executable,'form/mongo.py',inp,'last jobs'],shell=False,stdout=PIPE)
 
-	return render(request,'form/home.html',{
+	return render(request,'form/home.html',{'form':form,
 		'Occ':Occ.stdout.decode('cp1251'),
 		'Amount':Amount.stdout.decode('cp1251'),
 		'AvgSal':AvgSal.stdout.decode('cp1251'),
