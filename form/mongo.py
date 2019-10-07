@@ -77,8 +77,7 @@ def lastJobs(resumes):
     return mostPop
 
 def Output(occupation, index):
-    print(occupation)
-    resumes = FindResumes(occupation.decode('cp1251'))
+    resumes = FindResumes(occupation)
     result = []
     result.append({
         'occupation':occupation,
