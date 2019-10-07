@@ -4,13 +4,22 @@ from django.shortcuts import render
 import requests
 import sys
 from subprocess import run, PIPE
+from django.utils.encoding import python_2_unicode_compatible
+from .forms import SearchForm
+from django.http import HttpResponse
 
+inp = ''
 
 def home(request):
-	return render(request, 'form/home.html')
+	form = SearchForm()
+	return render(request, 'form/home.html', {'form':form})
 
 def external(request):
-	inp = unicode(request.POST.get('param'))
+	if request.method == 'POST':
+		form = SearchForm(request.POST)
+		if form.is_valid():
+			inp  = form.cleaned_data['Search']
+	
 	Occ = run([sys.executable,'form/mongo.py',inp,'occupation'],shell=False,stdout=PIPE)
 	Amount = run([sys.executable,'form/mongo.py',inp,'resumes amount'],shell=False,stdout=PIPE)
 	AvgSal = run([sys.executable,'form/mongo.py',inp,'avg salary'],shell=False,stdout=PIPE)

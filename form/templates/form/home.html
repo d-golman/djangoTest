@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <!DOCTYPE html>
+<html>		
 <head>
+	<meta charset= "UTF-8">
+	<meta http-equiv="X-UA-Copatible" content="ie=edge">
 	<title></title>
 </head>
 <body>
 	<h1>Выпускники НГТУ</h1>
-	<form action="/external/" method="post">
+	<form method="post" action="external">
 		{% csrf_token %}
-		Введите профессию:
-		<input type="text" name="param" required="" enctype="unicode">
+		{{form}}
 		<br>
 		<br>
 		<input type="submit" value="Поиск">
