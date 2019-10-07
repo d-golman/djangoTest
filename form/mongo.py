@@ -78,7 +78,7 @@ def lastJobs(resumes):
 
 def Output(occupation, index):
     resumes = FindResumes(occupation)
-    print
+    print(occupation)
     result = []
     result.append({
         'occupation':occupation,
