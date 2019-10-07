@@ -14,7 +14,7 @@ def MongoConnect():
 def FindResumes(occupation):
     collection = MongoConnect()
     resumes = []
-    for resume in collection.find({"occupation" : occupation.encode('cp1251')}):
+    for resume in collection.find({"occupation" : occupation.encode(encoding='utf-8', errors='ignore')}):
         resumes.append(resume)
     return resumes
 
