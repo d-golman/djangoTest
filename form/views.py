@@ -23,16 +23,16 @@ def external(request):
 	Occ = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'occupation'],shell=False,stdout=PIPE)
 	Amount = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'resumes amount'],shell=False,stdout=PIPE)
 	AvgSal = run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'avg salary'],shell=False,stdout=PIPE)
-	HighestSal= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'high salary'],shell=False,stdout=PIPE)
-	LowestSal= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'low salary'],shell=False,stdout=PIPE)
-	AvgAge= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'avg age'],shell=False,stdout=PIPE)
-	OldAge= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'old age'],shell=False,stdout=PIPE)
-	YoungAge= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'young age'],shell=False,stdout=PIPE)
-	AvgExp= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'avg exp'],shell=False,stdout=PIPE)
-	lastJobs= run([sys.executable,'form/mongo.py',inp.encode("UTF-8"),'last jobs'],shell=False,stdout=PIPE)
+	HighestSal= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'high salary'],shell=False,stdout=PIPE)
+	LowestSal= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'low salary'],shell=False,stdout=PIPE)
+	AvgAge= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'avg age'],shell=False,stdout=PIPE)
+	OldAge= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'old age'],shell=False,stdout=PIPE)
+	YoungAge= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'young age'],shell=False,stdout=PIPE)
+	AvgExp= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'avg exp'],shell=False,stdout=PIPE)
+	lastJobs= run([sys.executable,'form/mongo.py',inp.encode("cp1251"),'last jobs'],shell=False,stdout=PIPE)
 
 	return render(request,'form/home.html',{
-		'Occ':Occ.stdout.decode('cp1251'),
+		'Occ':inp.decode('cp1251'),
 		'Amount':Amount.stdout.decode('cp1251'),
 		'AvgSal':AvgSal.stdout.decode('cp1251'),
 		'HighestSal':HighestSal.stdout.decode('cp1251'),
