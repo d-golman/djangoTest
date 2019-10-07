@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pymongo
 import collections
 import sys
@@ -96,5 +97,5 @@ def Output(occupation, index):
     print(result)
     return result[0][index]
 
-out = Output(sys.argv[1].encode('surrogatepass'),sys.argv[2])
+out = Output(sys.argv[1],sys.argv[2])
 print(out)
