@@ -7,39 +7,37 @@ import requests
 import sys
 from subprocess import run, PIPE
 from django.utils.encoding import python_2_unicode_compatible
-from .forms import SearchForm
+from .forms import SnippetForm
 from django.http import HttpResponse
 import pymongo
 import collections
 import sys
 import msg
 
-inp = ''
-
 def home(request):
-	form = SearchForm()
-	return render(request, 'form/home.html', {'form':form})
+        form = SnippetForm()
+        return render(request, 'form/index.html', {'form':form})
 
 def external(request):
-	if request.method == 'POST':
-		form = SearchForm(request.POST)
-		if form.is_valid():
-			inp  = form.cleaned_data['Search']
-	
-	result = Output(inp)
+        if request.method == 'POST':
+                form = SnippetForm(request.POST)
+                if form.is_valid():
+                        inp  = form.cleaned_data['Search']
+        
+        result = Output(inp.lower().capitalize())
 
-	return render(request,'form/home.html',{'form':form,
-		'Occ':result['occupation'],
-		'Amount':result['resumes amount'],
-		'AvgSal':result['avg salary'],
-		'HighestSal':result['high salary'],
-		'LowestSal':result['low salary'],
-		'AvgAge':result['avg age'],
-		'OldAge':result['old age'],
-		'YoungAge':result['young age'],
-		'AvgExp':result['avg exp'],
-		'lastJobs':result['last jobs']
-		})
+        return render(request,'form/index.html',{'form':form,
+                'Occ':result['occupation'],
+                'Amount':result['resumes amount'],
+                'AvgSal':result['avg salary'],
+                'HighestSal':result['high salary'],
+                'LowestSal':result['low salary'],
+                'AvgAge':result['avg age'],
+                'OldAge':result['old age'],
+                'YoungAge':result['young age'],
+                'AvgExp':result['avg exp'],
+                'lastJobs':str(result['last jobs']).replace('[','').replace(']','')
+                })
 
 def MongoConnect():
     url = 'mongodb+srv://cluster0-od56m.mongodb.net/test'
@@ -117,7 +115,8 @@ def lastJobs(resumes):
 def Output(occupation):
     resumes = FindResumes(occupation)
     result = []
-    result.append({
+    if resumes != []:
+        result = {
         'occupation':occupation,
         'resumes amount':Amount(resumes),
         'avg salary':AvgSal(resumes),
@@ -128,5 +127,16 @@ def Output(occupation):
         'young age':YoungAge(resumes),
         'avg exp':AvgExp(resumes),
         'last jobs':lastJobs(resumes)
-    })
-    return result[0]
+        }
+    else:
+        result = {'occupation': '',
+                        'resumes amount': 0,
+                        'avg salary': 0,
+                        'high salary': 0,
+                        'low salary': 0,
+                        'avg age': 0,
+                        'old age': 0,
+                        'young age': 0,
+                        'avg exp': 0,
+                        'last jobs': []}                        
+    return result
