@@ -16,7 +16,16 @@ import msg
 
 def home(request):
         form = SnippetForm()
-        return render(request, 'form/index.html', {'form':form})
+        result = Output2()
+        return render(request, 'form/index.html', {
+            'form':form,
+            'head': 'Общая информация',
+            's1': "Новосибирский государственный техни́ческий университет (НГТУ) — многопрофильный университет в Новосибирске. В настоящий момент НГТУ является одним из крупнейших вузов региона — осуществляется подготовка по 95 направлениям. В составе университета 17 факультетов и институтов. Является участником программы — Опорные университеты России.",
+            's3': "На данный момент на сайте hh.ru пердставлено " + result['amount'] + " вакансий выпускников НГТУ.",
+            's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
+            's7': "Самые популярные профессии: " + result['MostPopOcc'],            
+            's9': "Самые популярные места работы: " + result['MostPopJob']             
+            })
 
 def external(request):
         if request.method == 'POST':
@@ -26,17 +35,19 @@ def external(request):
         
         result = Output(inp.lower().capitalize())
 
-        return render(request,'form/index.html',{'form':form,
-                'Occ':result['occupation'],
-                'Amount':result['resumes amount'],
-                'AvgSal':str(result['avg salary']) + " рублей",
-                'HighestSal':str(result['high salary']) + " рублей",
-                'LowestSal':str(result['low salary']) + " рублей",
-                'AvgAge':result['avg age'],
-                'OldAge':result['old age'],
-                'YoungAge':result['young age'],
-                'AvgExp':result['avg exp'],
-                'lastJobs':str(result['last jobs']).replace('[','').replace(']','')
+        return render(request,'form/index.html',{
+                'head': "Результаты поиска",
+                'form':form,
+                's1':"Профессия: " + result['occupation'],
+                's2':"Всего резюме: " + str(result['resumes amount']),
+                's3':"Средняя зарплата: " + str(result['avg salary']) + " рублей",
+                's4':"Самая высокая зарплата: " + str(result['high salary']) + " рублей",
+                's5':"Самая низкая зарплата: " + str(result['low salary']) + " рублей",
+                's6':"Средний возраст: " + str(result['avg age']),
+                's7':"Самый старший: " + str(result['old age']),
+                's8':"Самый младший: " + str(result['young age']),
+                's9':"Среднй опыт работы: " + str(result['avg exp']),
+                's10':"Самые частые места работы: " + str(result['last jobs']).replace('[','').replace(']','').replace("'",'')
                 })
 
 def MongoConnect():
@@ -139,4 +150,29 @@ def Output(occupation):
                         'young age': 0,
                         'avg exp': 0,
                         'last jobs': []}                        
+    return result
+
+def Output2():
+    collection = MongoConnect().find()
+    resumes = []
+    occs = []
+    jobs = []
+    total = 0
+    for resume in collection:
+        resumes.append(resume)
+    for resume in resumes:
+        if resume['occupation'] != None: occs.append(resume['occupation'])
+        counter1 = collections.Counter(occs)
+        mostPopOcc = (counter1.most_common(3))
+        total+=resume['salary']
+        avg = int(total/len(resumes))
+        if resume['lastJob'] != None: jobs.append(resume['lastJob'])
+        counter2 = collections.Counter(jobs)
+        mostPopJob = (counter2.most_common(3))
+    result = {
+        'amount': str(len(resumes)),
+        'MostPopOcc': str(mostPopOcc).replace('[','').replace(']','').replace("'",''),
+        'avg': str(avg),
+        'MostPopJob': str(mostPopJob).replace('[','').replace(']','').replace("'",'')
+    }
     return result
