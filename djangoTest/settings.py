@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['djangotest.9kbdttkc9f.eu-central-1.elasticbeanstalk.com','127.
 
 INSTALLED_APPS = [
     'form.apps.FormConfig',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
