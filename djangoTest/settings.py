@@ -25,7 +25,7 @@ SECRET_KEY = '6vd2r9elk4q$g7+pxe@9==3z(1tord%d99^+u!wi6p$z0!&7ev'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangotest.9kbdttkc9f.eu-central-1.elasticbeanstalk.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['djangotest.9kbdttkc9f.eu-central-1.elasticbeanstalk.com','127.0.0.1','localhost','https://univerityparser.herokuapp.com']
 
 
 # Application definition
@@ -119,6 +119,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 STATICFILES_DIRS = ('static/',)
 STATIC_URL = '/static/'
