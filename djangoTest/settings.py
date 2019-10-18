@@ -25,7 +25,7 @@ SECRET_KEY = '6vd2r9elk4q$g7+pxe@9==3z(1tord%d99^+u!wi6p$z0!&7ev'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangotest.9kbdttkc9f.eu-central-1.elasticbeanstalk.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['djangotest.9kbdttkc9f.eu-central-1.elasticbeanstalk.com','127.0.0.1','localhost','univerityparse.azurewebsites.net']
 
 
 # Application definition
