@@ -3,7 +3,7 @@ from . import views
 from django.conf.urls import url
 
 urlpatterns = [
-    path('', views.home, name='form-home'),  
-    url('search', views.search),
-    path('snippet', views.search)
+    path('', views.home, name='form-home'),    
+    url(r'^external', views.external),
+    path('snippet', views.external)
 ]
