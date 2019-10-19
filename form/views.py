@@ -31,8 +31,7 @@ def home(request):
             's3': "На данный момент на сайте hh.ru представлено " + result['amount'] + " резюме выпускников НГТУ.",
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
-            's9': "Самые популярные места работы: " + result['MostPopJob'],    
-            'app4':app4()         
+            's9': "Самые популярные места работы: " + result['MostPopJob']
             })
 
 def search(request):
