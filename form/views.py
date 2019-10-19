@@ -61,8 +61,8 @@ def search(request):
                 })
 
 def MongoConnect(coll):
-    url = 'mongodb+srv://cluster0-od56m.mongodb.net/test'
-    dbs = pymongo.MongoClient(url,username='user1',password='database')
+    url = 'mongourl'
+    dbs = pymongo.MongoClient(url,username='username',password='password')
     mongo = dbs
     hh_ru = mongo.hh_ru
     collection = hh_ru[coll]
