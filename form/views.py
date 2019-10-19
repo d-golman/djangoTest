@@ -214,25 +214,19 @@ def app2():
             }
         )
     ])
-    return app2
+    div = opy.plot({
+        "data":[go.Pie(labels=ages, values=list(AgesValues.values())[1:], marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
+        "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5}, font=dict(family='Fira Sans, sans-serif', size=13,))},
+        output_type='div')
+    return div
 
 def app3():
     areasValues = MongoConnect('areas').find()[0]
     x = list(areasValues.keys())[1:]
     y = list(areasValues.values())[1:]
-    app3.layout = html.Div(children=[
-        dcc.Graph(
-            figure={
-                'data': [{'x': list(areasValues.keys())[1:],
-                'y': list(areasValues.values())[1:], 'type': 'bar',}],
-                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=50,r=60,b=120,t=30)),                            
-                            
-            }
-        )
-    ])
     div = opy.plot({
         "data":[go.Bar(x=x, y=y)],
-        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=0,b=110,t=30), height=500)},
+        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=40,b=110,t=30), height=500)},
         output_type='div')
     return div
 
