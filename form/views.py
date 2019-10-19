@@ -232,7 +232,7 @@ def app3():
     ])
     div = opy.plot({
         "data":[go.Bar(x=x, y=y)],
-        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=50,b=110,t=30), height=500)},
+        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=40,b=110,t=30), height=500)},
         output_type='div')
     return div
 
@@ -242,6 +242,6 @@ def app4():
     y = list(skillsValues.values())[1:]
     div = opy.plot({
         "data":[go.Bar(x=x, y=y)],
-        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=50,b=200,t=30), height=700)},
+        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=40,b=200,t=30), height=700)},
         output_type='div')
     return div
