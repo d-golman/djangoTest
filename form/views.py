@@ -31,7 +31,7 @@ def home(request):
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
             's9': "Самые популярные места работы: " + result['MostPopJob'],    
-            'app4':opy.plot([go.Scatter(x=[1, 2, 3], y=[3, 1, 6])]))         
+            'app4':opy.plot([go.Scatter(x=[1, 2, 3], y=[3, 1, 6])])         
             })
 
 def search(request):
