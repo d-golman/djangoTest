@@ -31,6 +31,7 @@ def home(request):
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
             's9': "Самые популярные места работы: " + result['MostPopJob'],  
+            'app2':app2(),
             'app3':app3(),  
             'app4':app4()         
             })
