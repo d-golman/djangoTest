@@ -185,7 +185,7 @@ def Output2():
     return result
 
 class Graph(TemplateView):
-    template_name = 'index.html'
+    template_name = 'graph.html'
 
     def app1(self, **kwargs):
         app1 = DjangoDash('Gender')
