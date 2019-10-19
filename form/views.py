@@ -194,7 +194,7 @@ def app1():
     GenderValues = MongoConnect('genders').find()[0]
     div = opy.plot({
         "data":[go.Pie(labels=genders, values=list(GenderValues.values())[1:], marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
-        "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5}, font=dict(family='Fira Sans, sans-serif', size=13,))},
+        "layout": go.Layout(margin=dict(l=0,r=100,b=0,t=0),legend={"x": 1, "y": 0.5}, font=dict(family='Fira Sans, sans-serif', size=13,))},
         output_type='div')
     return div
 
@@ -203,7 +203,7 @@ def app2():
     AgesValues = MongoConnect('ages').find()[0]
     div = opy.plot({
         "data":[go.Pie(labels=ages, values=list(AgesValues.values())[1:], marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
-        "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5}, font=dict(family='Fira Sans, sans-serif', size=13,))},
+        "layout": go.Layout(margin=dict(l=0,r=100,b=0,t=0),legend={"x": 1, "y": 0.5}, font=dict(family='Fira Sans, sans-serif', size=13,))},
         output_type='div')
     return div
 
