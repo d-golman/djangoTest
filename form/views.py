@@ -19,7 +19,6 @@ import dash_html_components as html
 import plotly.graph_objs as go
 from django_plotly_dash import DjangoDash
 import plotly.offline as opy
-from django.views.generic import TemplateView
 
 def home(request):
         form = SnippetForm()
@@ -31,7 +30,8 @@ def home(request):
             's3': "На данный момент на сайте hh.ru представлено " + result['amount'] + " резюме выпускников НГТУ.",
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
-            's9': "Самые популярные места работы: " + result['MostPopJob']
+            's9': "Самые популярные места работы: " + result['MostPopJob'],    
+            'app4':opy.plot([go.Scatter(x=[1, 2, 3], y=[3, 1, 6])]))         
             })
 
 def search(request):
@@ -184,61 +184,64 @@ def Output2():
     }
     return result
 
-class Graph(TemplateView):
-    template_name = 'graph.html'
 
-    def app1(self, **kwargs):
-        app1 = DjangoDash('Gender')
-        genders = ["Мужской", "Женский"]
-        GenderValues = MongoConnect('genders').find()[0]
-        app1.layout = html.Div([
-            dcc.Graph(
-                figure={
-                    'data': [go.Pie(labels=genders, values=[GenderValues['Мужской'], GenderValues['Женский']], 
-                    marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
+
+def app1():
+    app1 = DjangoDash('Gender')
+    genders = ["Мужской", "Женский"]
+    GenderValues = MongoConnect('genders').find()[0]
+    app1.layout = html.Div([
+        dcc.Graph(
+            figure={
+                'data': [go.Pie(labels=genders, values=[GenderValues['Мужской'], GenderValues['Женский']], 
+                marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
                     "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5})
-                }
-            )
-        ])
-        return app1
+            }
+        )
+    ])
+    return app1
+def app2():
+    app2 = DjangoDash('Age')
+    ages = ["14-18", "18-30","30-40","40-50","50-60","60+"]
+    AgesValues = MongoConnect('ages').find()[0]
+    app2.layout = html.Div([
+        dcc.Graph(
+            figure={
+                'data': [go.Pie(labels=ages, values=[AgesValues['14-18'],AgesValues['18-30'],AgesValues['30-40'],AgesValues['40-50'],AgesValues['50-60'],AgesValues['60+']], 
+                marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
+                "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5})
+            }
+        )
+    ])
+    return app2
 
-    def app2(self, **kwargs):
-        app2 = DjangoDash('Age')
-        ages = ["14-18", "18-30","30-40","40-50","50-60","60+"]
-        AgesValues = MongoConnect('ages').find()[0]
-        app2.layout = html.Div([
-            dcc.Graph(
-                figure={
-                    'data': [go.Pie(labels=ages, values=[AgesValues['14-18'],AgesValues['18-30'],AgesValues['30-40'],AgesValues['40-50'],AgesValues['50-60'],AgesValues['60+']], 
-                    marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
-                    "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5})
-                    }
-            )
-        ])
-        return app2
+def app3():
+    app3 = DjangoDash('Areas')
+    areasValues = MongoConnect('areas').find()[0]
+    app3.layout = html.Div(children=[
+        dcc.Graph(
+            figure={
+                'data': [{'x': list(areasValues.keys())[1:],
+                'y': list(areasValues.values())[1:], 'type': 'bar',}],
+                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=50,r=60,b=120,t=30)),                            
+                            
+            }
+        )
+    ])
+    return app3
 
-    def app3(self, **kwargs):
-        app3 = DjangoDash('Areas')
-        areasValues = MongoConnect('areas').find()[0]
-        app3.layout = html.Div(children=[
-            dcc.Graph(
-                figure={
-                    'data': [{'x': list(areasValues.keys())[1:],
-                    'y': list(areasValues.values())[1:], 'type': 'bar',}],
-                    'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=50,r=60,b=120,t=30)),                            
-
-               }
-           )
-        ])
-        return app3
-
-    def get_context_data(self, **kwargs):    
-        context = super(Graph, self).get_context_data(**kwargs)  
-        skillsValues = MongoConnect('skills').find()[0]
-        trace1 = go.Scatter(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])
-        data = go.Data([trace1])
-        layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
-        figure=go.Figure(data=data,layout=layout)
-        div = opy.plot(figure, auto_open=False, output_type='div')
-        context['graph'] = div
-        return context
+def app4():
+    app4 = DjangoDash('Skills')
+    skillsValues = MongoConnect('skills').find()[0]
+    app4.layout = html.Div(children=[
+        dcc.Graph(
+            figure={
+                'data': [{'x': list(skillsValues.keys())[1:],
+                'y': list(skillsValues.values())[1:], 'type': 'bar',}],
+                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
+                            
+            }
+        )
+    ])
+    div = opy.plot()
+    return app4
