@@ -27,7 +27,7 @@ def home(request):
             's9': "Самые популярные места работы: " + result['MostPopJob']             
             })
 
-def external(request):
+def search(request):
         if request.method == 'POST':
                 form = SnippetForm(request.POST)
                 if form.is_valid():
@@ -35,7 +35,7 @@ def external(request):
         
         result = Output(inp.lower().capitalize())
 
-        return render(request,'form/index.html',{
+        return render(request,'form/search.html',{
                 'head': "Результаты поиска",
                 'form':form,
                 's1':"Профессия: " + result['occupation'],
