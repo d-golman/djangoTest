@@ -141,7 +141,11 @@
                     <div class="head_title text-center">
                             <h2>Распределение по профобластям</h2>
                             </div>
-
+                            {% if graph %}
+                            <div>
+                            {{ graph|safe }}
+                            </div>
+                            {% endif %}
             </div>  
             </div>
         </section>
