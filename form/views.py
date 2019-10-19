@@ -181,3 +181,55 @@ def Output2():
         'MostPopJob': str(mostPopJob).replace('[','').replace(']','').replace("'",'')
     }
     return result
+
+    app1 = DjangoDash('Gender')
+genders = ["Мужской", "Женский"]
+GenderValues = MongoConnect('genders').find()[0]
+app1.layout = html.Div([
+    dcc.Graph(
+        figure={
+            'data': [go.Pie(labels=genders, values=[GenderValues['Мужской'], GenderValues['Женский']], 
+            marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
+            "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5})
+        }
+    )
+])
+
+app2 = DjangoDash('Age')
+ages = ["14-18", "18-30","30-40","40-50","50-60","60+"]
+AgesValues = MongoConnect('ages').find()[0]
+app2.layout = html.Div([
+    dcc.Graph(
+        figure={
+            'data': [go.Pie(labels=ages, values=[AgesValues['14-18'],AgesValues['18-30'],AgesValues['30-40'],AgesValues['40-50'],AgesValues['50-60'],AgesValues['60+']], 
+            marker = {'colors': [ '#4CAC40', '#79C25A','#95D46C','#B1D979', '#BBCD32', '#D2D83F']})],
+            "layout": go.Layout(margin=dict(l=0,r=120,b=0,t=0),legend={"x": 1, "y": 0.5})
+        }
+    )
+])
+
+app3 = DjangoDash('Areas')
+areasValues = MongoConnect('areas').find()[0]
+app3.layout = html.Div(children=[
+    dcc.Graph(
+        figure={
+            'data': [{'x': list(areasValues.keys())[1:],
+            'y': list(areasValues.values())[1:], 'type': 'bar',}],
+            'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=50,r=60,b=120,t=30)),                            
+                            
+        }
+    )
+])
+
+app4 = DjangoDash('Skills')
+skillsValues = MongoConnect('skills').find()[0]
+app4.layout = html.Div(children=[
+    dcc.Graph(
+        figure={
+            'data': [{'x': list(skillsValues.keys())[1:],
+            'y': list(skillsValues.values())[1:], 'type': 'bar',}],
+            'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
+                            
+        }
+    )
+])
