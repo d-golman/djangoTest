@@ -31,7 +31,7 @@ def home(request):
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
             's9': "Самые популярные места работы: " + result['MostPopJob'],    
-            'app4':opy.plot([go.Scatter(x=[1, 2, 3], y=[3, 1, 6])], output_type='div')         
+            'app4':opy.plot(app4(), output_type='div')         
             })
 
 def search(request):
@@ -243,5 +243,10 @@ def app4():
             }
         )
     ])
-    div = opy.plot()
-    return app4
+    div = opy.plot({
+                'data': [{'x': list(skillsValues.keys())[1:],
+                'y': list(skillsValues.values())[1:], 'type': 'bar',}],
+                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
+                            
+            })
+    return div
