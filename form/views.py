@@ -236,7 +236,7 @@ class Graph(TemplateView):
         context = super(Graph, self).get_context_data(**kwargs)    
         app4 = DjangoDash('Skills')
         skillsValues = MongoConnect('skills').find()[0]
-        trace1 = go.Scatter(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:],'type': 'bar',)
+        trace1 = go.Scatter(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])
         data = go.Data([trace1])
         layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
         figure=go.Figure(data=data,layout=layout)
