@@ -13,7 +13,11 @@ import pymongo
 import collections
 import sys
 import msg
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
 import plotly.graph_objs as go
+from django_plotly_dash import DjangoDash
 import plotly.offline as opy
 
 def home(request):
@@ -27,7 +31,7 @@ def home(request):
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
             's9': "Самые популярные места работы: " + result['MostPopJob'],    
-            'app4':app4()         
+            'app4':opy.plot([go.Scatter(x=[1, 2, 3], y=[3, 1, 6])], output_type='div')         
             })
 
 def search(request):
@@ -227,9 +231,22 @@ def app3():
     return app3
 
 def app4():
+    app4 = DjangoDash('Skills')
     skillsValues = MongoConnect('skills').find()[0]
-    data = go.Data([go.Bar(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])])
-    layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
-    figure = go.Figure(data=data,layout=layout)
-    div = opy.plot(go.Bar(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:]), output_type='div')
+    app4.layout = html.Div(children=[
+        dcc.Graph(
+            figure={
+                'data': [{'x': list(skillsValues.keys())[1:],
+                'y': list(skillsValues.values())[1:], 'type': 'bar',}],
+                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
+                            
+            }
+        )
+    ])
+    div = opy.plot({
+                'data': [{'x': list(skillsValues.keys())[1:],
+                'y': list(skillsValues.values())[1:], 'type': 'bar',}],
+                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
+                            
+            })
     return div
