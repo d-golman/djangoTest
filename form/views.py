@@ -234,5 +234,5 @@ def app4():
     skillsValues = MongoConnect('skills').find()[0]
     x = list(skillsValues.keys())[1:]
     y = list(skillsValues.values())[1:]
-    div = opy.plot([go.Bar(x=x, y=y)], output_type='div')
+    div = opy.plot({"data":[go.Bar(x=x, y=y)]}, output_type='div')
     return div
