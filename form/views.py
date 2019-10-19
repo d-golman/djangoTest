@@ -232,10 +232,8 @@ def app3():
 
 def app4():
     skillsValues = MongoConnect('skills').find()[0]
-    div = opy.plot({
-                'data': [{'x': list(skillsValues.keys())[1:],
-                'y': list(skillsValues.values())[1:], 'type': 'bar',}],
-                'layout': go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30)),                            
-                            
-            })
+    data = go.Data([go.Bar(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])])
+    layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
+    figure = go.Figure(data=data,layout=layout)
+    div = opy.plot(figure, output_type='div')
     return div
