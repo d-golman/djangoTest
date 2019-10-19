@@ -231,7 +231,7 @@ def app3():
 def app4():
     app4 = DjangoDash('Skills')
     skillsValues = MongoConnect('skills').find()[0]
-    app4.layout = html.Div(children=[
+    app = app4.layout = html.Div(children=[
         dcc.Graph(
             figure={
                 'data': [{'x': list(skillsValues.keys())[1:],
@@ -241,4 +241,4 @@ def app4():
             }
         )
     ])
-    return app4
+    return app
