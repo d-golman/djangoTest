@@ -232,14 +232,13 @@ class Graph(TemplateView):
         ])
         return app3
 
-    def app4(self, **kwargs):    
-        context = super(Graph, self).get_context_data(**kwargs)    
-        app4 = DjangoDash('Skills')
+    def get_context_data(self, **kwargs):    
+        context = super(Graph, self).get_context_data(**kwargs)  
         skillsValues = MongoConnect('skills').find()[0]
         trace1 = go.Scatter(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])
         data = go.Data([trace1])
         layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
         figure=go.Figure(data=data,layout=layout)
         div = opy.plot(figure, auto_open=False, output_type='div')
-        context['app4'] = div
+        context['graph'] = div
         return context
