@@ -13,6 +13,11 @@ import pymongo
 import collections
 import sys
 import msg
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import plotly.graph_objs as go
+from django_plotly_dash import DjangoDash
 
 def home(request):
         form = SnippetForm()
