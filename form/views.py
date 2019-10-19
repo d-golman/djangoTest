@@ -13,11 +13,7 @@ import pymongo
 import collections
 import sys
 import msg
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 import plotly.graph_objs as go
-from django_plotly_dash import DjangoDash
 import plotly.offline as opy
 
 def home(request):
@@ -235,5 +231,5 @@ def app4():
     data = go.Data([go.Bar(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:])])
     layout=go.Layout(colorway=["#4CAC40"], hovermode="closest",margin=dict(l=40,r=0,b=120,t=30))
     figure = go.Figure(data=data,layout=layout)
-    div = opy.plot(figure, output_type='div')
+    div = opy.plot(go.Scatter(x=list(skillsValues.keys())[1:], y=list(skillsValues.values())[1:]), output_type='div')
     return div
