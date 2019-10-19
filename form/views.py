@@ -30,7 +30,8 @@ def home(request):
             's3': "На данный момент на сайте hh.ru представлено " + result['amount'] + " резюме выпускников НГТУ.",
             's5': "Средняя зарплата составляет " + result['avg'] + " рублей.",
             's7': "Самые популярные профессии: " + result['MostPopOcc'],            
-            's9': "Самые популярные места работы: " + result['MostPopJob'],    
+            's9': "Самые популярные места работы: " + result['MostPopJob'],  
+            'app3':app3(),  
             'app4':app4()         
             })
 
@@ -216,8 +217,9 @@ def app2():
     return app2
 
 def app3():
-    app3 = DjangoDash('Areas')
     areasValues = MongoConnect('areas').find()[0]
+    x = list(areasValues.keys())[1:]
+    y = list(areasValues.values())[1:]
     app3.layout = html.Div(children=[
         dcc.Graph(
             figure={
@@ -228,7 +230,11 @@ def app3():
             }
         )
     ])
-    return app3
+    div = opy.plot({
+        "data":[go.Bar(x=x, y=y)],
+        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=60,b=120,t=30), height=500)},
+        output_type='div')
+    return div
 
 def app4():
     skillsValues = MongoConnect('skills').find()[0]
