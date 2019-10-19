@@ -232,7 +232,7 @@ def app3():
     ])
     div = opy.plot({
         "data":[go.Bar(x=x, y=y)],
-        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=60,b=120,t=30), height=500)},
+        "layout": go.Layout(colorway=["#4CAC40"],hovermode="closest", font=dict(family='Fira Sans, sans-serif', size=13,), margin=dict(l=40,r=50,b=110,t=30), height=500)},
         output_type='div')
     return div
 
